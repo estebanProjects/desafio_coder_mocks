@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All productos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/productosAll.css">
+</head>
+<body>
+
+    <h1>Vista de productos</h1>
+
+    <div class="main-container">
+        <table>
+            <%if (productos.length > 0) { %>
+            <thead>
+                <tr>
+                    <th>Nombre</th><th>Precio</th><th>Foto</th>
+                </tr>
+            </thead>
+            
+                <% productos.forEach(producto => { %>
+                    <tr>
+                        <td>
+                            <%= producto.title %>
+                        </td>
+                        <td>
+                            <%= producto.price %>
+                        </td>
+                        <td>
+                            <img src="
+                            <%= producto.thumbnail %>
+                            " alt="">
+                        </td>
+                    </tr>
+                <% }) %>    
+            <% } else{ %>
+                <h2>No se encontraron productos</h2>
+            <% } %>
+
+            
+
+    
+        </table>
+
+        <p><a href="../">Volver al formulario</a></p>
+    </div>
+
+    
+</body>
+</html>

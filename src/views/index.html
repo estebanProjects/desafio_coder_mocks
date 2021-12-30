@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Productos</title> 
+    <%- include ('partials/head.html')%>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/productosAll.css">
+    <link rel="stylesheet" href="/css/mensajeria.css">
+</head>
+<body>
+
+    <div>
+        <form action="/" method="post" class="form-product">
+            <label for="">Nombre del producto</label>
+            <input type="text" name="title" class="input_t" value="libro" id="title">
+    
+            <label for="">Precio</label>
+            <input type="text" name="price" class="input_t" value="150.73" id="price">
+    
+            <label for="">Link de la imagen</label>
+            <input type="text" name="thumbnail" class="input_t" id="thumbnail" value="https://cdn2.iconfinder.com/data/icons/flat-seo-web-ikooni/128/flat_seo2-04-512.png">
+    
+            <input type="submit" value="Enviar" class="input_btn" id="input_button">
+        </form>
+
+        <%- include ('partials/productosplantilla.html')%>
+
+        <section class="mensajeria-espacio">
+            <h3>Centro de Mensajes</h3>
+            <form action="/" class="">
+                <div class="box-input_correo">
+                    <input type="text" id="input_correo" class="input_correo" value="edea@gmail.com" placeholder="Correo">
+                    <input type="text" id="input_nombre" class="input_nombre" value="Esteban" placeholder="Nombre">
+                    <input type="text" id="input_apellido" class="input_apellido" value="Espinoza" placeholder="Apellido">
+                    <input type="text" id="input_edad" class="input_edad" value="17" placeholder="Edad">
+                    <input type="text" id="input_alias" class="input_alias" value="Tiwi" placeholder="Alias">
+                    <input type="text" id="input_avatar" class="input_avatar" value="https://64.media.tumblr.com/0c3cbdf6f3f11140c0af7c9e788449bf/tumblr_mpoj4yqkBe1s7ot7ao1_640.jpg" placeholder="Url Avatar">
+                </div>
+                <hr>
+                <div class="box_mensajes" id="box_mensajes">
+                        <%if (mensajes.length > 0) { %>
+                        <tbody id="tbody">
+                            <% mensajes.forEach(mensaje => { %>
+                                <p>
+                                    <strong class="correo"><%= mensaje.author.id %> </strong><b class="hora">[<%= mensaje.author.shippingDate %>]</b><i class="mensaje">: <%= mensaje.message %></i><img src="<%= mensaje.author.avatar %>" />
+                                </p>
+                            <% }) %>    
+                        <% } else{ %>
+                            <h2>No se encontraron mensajes</h2>
+                        <% } %>
+                        </tbody>
+                </div>
+                <div>
+                    <input value="I drink water" type="text" id="input_mensaje" class="input_mensaje" placeholder="Ingresa un mensaje...">
+                    <input type="submit" value="Enviar" id="btn_mensaje" class="btn_mensaje"> 
+                </div>
+            </form>
+        </section>
+    </div>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js"></script>
+    <script src="/script/app.js"></script>
+</body>
+</html>
